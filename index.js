@@ -101,29 +101,31 @@ const setFocus = ((elm) =>
         const linkingNodes = node1.connectedEdges('.bridge').connectedNodes().intersect(node2.connectedEdges('.bridge').connectedNodes()).difference(node1).difference(node2);
         const linkingEdges = node1.connectedEdges('.bridge').union(node2.connectedEdges('.bridge')).intersect(linkingNodes.connectedEdges('.bridge'));
         const otherNodes = linkingNodes.union(node1).union(node2).absoluteComplement().nodes();
-        const nCols = Math.max(3, Math.ceil(otherNodes.size()/2));
-        const topHalf = otherNodes.slice(nCols);
-        const nMainRows = linkingNodes.size(); /* excluding top/bottom row) */
-        const middleRow = ((topHalf.nonempty() ? 1 : 0) + ((nMainRows-1) / 2));
+        const topHalf = otherNodes.slice(Math.ceil(otherNodes.size()/2));
+        const bottomHalf = otherNodes.difference(topHalf);
+        const nCols = Math.max(topHalf.size(), bottomHalf.size(), linkingNodes.size());
         const middleColumn = (nCols-1)/2;
+        let nextTopColumn = (nCols-topHalf.size())/2;
+        let nextCenterColumn = (nCols-linkingNodes.size())/2;
+        let nextBottomColumn = (nCols-bottomHalf.size())/2;
+        
         linkingEdges.style('display','element');
-        let i = (topHalf.nonempty() ? 0 : -1);
         isAnimating = cyGraph.layout({
             name: 'grid',
-            rows: linkingNodes.size()+2,
-            cols: 3,
+            rows: 3 + (topHalf.nonempty() ? 1 : 0) + (bottomHalf.nonempty() ? 1 : 0),
+            cols: nCols,
             avoidOverlapPadding: 30,
             position: (e =>
             {
                 if (e.same(node1))
-                    return { col: (middleColumn-1), row: middleRow };
+                    return { col: middleColumn, row: (topHalf.nonempty() ? 1 : 0) };
                 if (e.same(node2))
-                    return { col: (middleColumn+1), row: middleRow };
+                    return { col: middleColumn, row: (topHalf.nonempty() ? 3 : 2) };
                 if (linkingNodes.contains(e))
-                    return { col: middleColumn, row: (++i) };
+                    return { col: nextCenterColumn++, row: (topHalf.nonempty() ? 2 : 1) };
                 if (topHalf.contains(e))
-                    return { row: 0 };
-                return { row: nMainRows + (topHalf.nonempty() ? 1 : 0) };
+                    return { col: nextTopColumn++, row: 0 };
+                return { col: nextBottomColumn++, row: (topHalf.nonempty() ? 4 : 3) };
             }),
             animate: true,
             condense: true,
