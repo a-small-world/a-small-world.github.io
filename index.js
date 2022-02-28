@@ -208,7 +208,7 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                 
                 const {main, extra, side} = hash;
                 let nResolved = 0;
-                const nTotal = main.size;
+                const nTotal = main.length;
                 document.getElementById('loading-bar-text').innerText = ('0/'+nTotal);
                 
                 const cards = {};
@@ -240,7 +240,7 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                 await window.ArtworksReady;
                 document.getElementById('loading-bar-filled').style.width = '100%';
                 document.getElementById('loading-bar-text').innerText = 'Done, courtesy of artworks.ygorganization.com!';
-                /*await sleep(200);*/
+                await sleep(200);
                 
                 const nTotal = cardIds.length;
                 document.getElementById('loading-header').innerText = 'Loading Card Data';
@@ -279,7 +279,7 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                     }
                     loadingImg.src = window.GetArtworkURL(...(animationQueue.pop()));
                     document.getElementById('loading-bar-filled').style.width = ((nDone*100/nTotal)+'%')
-                    /*await sleep(200);*/
+                    await sleep(50);
                 }
                 
                 let nTotalCards = 0;
@@ -314,7 +314,7 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                 document.getElementById('loading-header').innerText = 'Pondering Combinations';
                 document.getElementById('loading-bar-filled').style.width = '1px';
                 document.getElementById('loading-bar-text').innerText = ('0/'+nCards);
-                /*await sleep(200);*/
+                await sleep(200);
                 
                 for (let i=0; i<nCards;)
                 {
@@ -337,7 +337,7 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                     document.getElementById('loading-bar-text').innerText = (i+'/'+nCards);
                     await sleep(0);
                 }
-                /*await sleep(200);*/
+                await sleep(200);
                 
                 document.getElementById('loading-header').innerText = 'Rendering Graph';
                 document.getElementById('loading-bar-filled').style.width = '1px';
