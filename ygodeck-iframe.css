@@ -1,0 +1,21 @@
+html { overflow: hidden; }
+body { background: #aaa; }
+#import-subtext { display: none !important; }
+#import-container
+{
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    position: unset !important;
+}
+#import-box
+{
+    border-radius: 0 !important;
+    height: 12vh !important;
+    transform-origin: top !important;
+    scale: 3.5 !important;
+    border-top: 6.75vh solid transparent !important;
+    border-bottom: 12vh solid transparent !important;
+    border-left: 6vw solid transparent !important;
+    border-right: 6vw solid transparent !important;
+}

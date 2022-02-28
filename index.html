@@ -1,0 +1,38 @@
+<!doctype HTML>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="color-scheme" content="dark">
+    
+    <title>It's a Small World!</title>
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+    
+    <script defer src="carddata.js"></script>
+    <script defer src="encoding.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.21.0/cytoscape.min.js" integrity="sha512-6NNH8uUbdENB10r5FH/4DZviHTQ44GtZ+c+fwSiWM4GekjajHkYanpH0+jWt3meFll/HHWAcxKLcMpSAXuT/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/webcola@3.4.0/WebCola/cola.min.js" integrity="sha384-o4yPeUKY7q5q4fuMcFuJWSBJPJgSHtssnfVZvjNRGOEuBwT8zxXnzyGJcy5Ojpeo" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.3.0/cytoscape-cola.js" integrity="sha384-Ldl8QNlJqwU5oxINfhRejqxgLEytyg3lmcjdpQR4C2axJiBRLeD/facVPU/0syWb" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="index.js"></script>
+</head><body class="state-noscript">
+    <script type="text/javascript">document.body.className = 'state-loading';</script>
+    <div id="noscript-ctr" class="ctr">
+        <div class="center-dialog">
+            This page requires JavaScript to be enabled. Sorry!
+        </div>
+    </div>
+    <div id="open-ctr" class="ctr">
+        <iframe class="center-dialog" id="open-frame" src="https://yugiohdeck.github.io/"></iframe>
+    </div>
+    <div id="loading-ctr" class="ctr">
+        <div class="center-dialog">
+            <span id="loading-header"></span>
+            <div id="loading-bar"><div id="loading-bar-filled"></div></div>
+            <span id="loading-bar-text"></span>
+        </div>
+    </div>
+    <div id="graph-ctr" class="ctr">
+        <div id="graph" class="center-dialog"></div>
+        <div id="close-btn">X</div>
+    </div>
+</body></html>

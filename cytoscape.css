@@ -1,0 +1,20 @@
+node
+{
+    shape: rectangle;
+    background-fit: cover;
+    
+    text-valign: bottom;
+    font-size: 9;
+    text-outline-color: white;
+    text-outline-width: .5;
+}
+
+edge.bridge
+{
+    display: none;
+    font-size: 5;
+    text-background-color: white;
+    text-background-opacity: .6;
+    text-background-shape: round-rectangle;
+    text-background-padding: 5;
+}
