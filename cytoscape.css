@@ -3,7 +3,11 @@ node
     shape: rectangle;
     background-fit: cover;
     
+    width: 26.6666;
+    height: 38.75;
+    
     text-valign: bottom;
+    text-margin-y: -10.3;
     font-size: 9;
     text-outline-color: white;
     text-outline-width: .5;
@@ -12,6 +16,7 @@ node
 edge.bridge
 {
     display: none;
+    width: 3;
     font-size: 5;
     text-background-color: white;
     text-background-opacity: .6;

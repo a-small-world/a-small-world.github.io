@@ -84,7 +84,8 @@ body:not(.state-graph) > #graph-ctr { display: none; }
     
     border-bottom-left-radius: 5vmin;
     background: #ddd;
-    border: .3vmin solid #000;
+    border-left: .3vmin solid #000;
+    border-bottom: .3vmin solid #000;
     opacity: .8;
     cursor: pointer;
     
@@ -96,3 +97,19 @@ body:not(.state-graph) > #graph-ctr { display: none; }
     padding: 1vmin 1.3vmin;
 }
 #close-btn:hover { opacity: 1; }
+
+#info-text
+{
+    position: fixed;
+    bottom: 0;
+    padding: .5vmin 2.5vmin;
+    border-top-left-radius: 5vmin;
+    border-top-right-radius: 5vmin;
+    border: .3vmin solid #000;
+    border-bottom: 0;
+    background: #ddd;
+    
+    color: #000;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 1vh;
+}

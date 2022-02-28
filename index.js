@@ -49,12 +49,9 @@ const cyGraph = cytoscape({
 });
 cyGraph.style().selector('node').style({
     'background-image': (e => e.data('bg')),
-    'width': (e => (16 + (e.data('num')-1)*5.3333)),
-    'height': (e => (23.25 + (e.data('num')-1)*7.75)),
     'label': (e => e.data('num')+'x'),
-    'text-margin-y': (e => -6.5-e.data('num')*1.2),
 });
-cyGraph.style().selector('edge').style({ 'width': (e => 3*Math.sqrt(e.data('weight'))) });
+cyGraph.style().selector('edge.bridged').style({ 'width': (e => 3*Math.sqrt(e.data('weight'))) });
 cyGraph.style().selector('edge.bridge').style({
     'label': (e => {
         const [which, value] = e.data('match');
@@ -157,7 +154,7 @@ const setFocus = ((elm) =>
     }
 });
 
-cyGraph.on('tap', (e) => setFocus(e.target));
+cyGraph.on('dbltap', (e) => setFocus(e.target));
 
 (async () =>
 {
@@ -376,7 +373,6 @@ cyGraph.on('tap', (e) => setFocus(e.target));
                                     data: {
                                         source: ('card-'+(cardData[i].cardId)),
                                         target: ('card-'+(cardData[j].cardId)),
-                                        weight: 2,
                                         match: g1,
                                     },
                                     classes: 'bridge',
