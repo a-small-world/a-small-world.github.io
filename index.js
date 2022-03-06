@@ -11,6 +11,7 @@ const injectCSSPromise = new Promise((res) =>
             cssFile: new URL('/ygodeck-iframe.css', window.location).href,
             requestDeckInfoUpdate: true,
         }, 'https://yugiohdeck.github.io/');
+        window.setInterval(() => { if (document.body.className === 'state-open') openFrame.focus() }, 50); /* ... i can't seem to get blur events to play nice with an iframe ... */
         res();
     });
 });
@@ -139,10 +140,10 @@ const setFocus = ((elm) =>
         myEdges.absoluteComplement().edges('.bridged').style('display','none');
         isAnimating = cyGraph.layout({
             name: 'concentric',
-            animate: !isFirst,
             avoidOverlap: true,
             concentric: (e) => (elm.same(e) ? 3 : myEdges.connectedNodes().contains(e) ? 2 : 1),
             levelWidth: () => 1,
+            animate: true,
             stop: _animationDone,
         }).run();
     }
@@ -150,7 +151,8 @@ const setFocus = ((elm) =>
     {
         isAnimating = cyGraph.layout({
             name: 'cola',
-            randomize: true,
+            randomize: isFirst,
+            animate: !isFirst,
             stop: _animationDone,
         }).run();
     }
@@ -214,13 +216,18 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                 const cards = {};
                 await Promise.all(main.map(async ([passcode, num]) =>
                 {
-                    const {cardId, artId} = await window.ResolvePasscode(passcode);
-                    
-                    const existing = cards[cardId];
-                    if (existing)
-                        existing[1] += num;
-                    else
-                        cards[cardId] = [artId, num];
+                    try
+                    {
+                        const {cardId, artId} = await window.ResolvePasscode(passcode);
+                        
+                        const existing = cards[cardId];
+                        if (existing)
+                            existing[1] += num;
+                        else
+                            cards[cardId] = [artId, num];
+                    } catch (e) {
+                        console.error(passcode, e);
+                    }
 
                     ++nResolved;
                     document.getElementById('loading-bar-filled').style.width = ((nResolved*100/nTotal)+'%');
