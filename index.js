@@ -425,10 +425,31 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
     }
 })();
 
+const importYDKE = ((ydke) =>
+{
+    const cards = {}
+    const data = atob(ydke.split('!')[0])
+    for (let i=0, n=data.length; i<n; i += 4)
+    {
+        const id = (
+            (data.charCodeAt(i+0) <<  0) |
+            (data.charCodeAt(i+1) <<  8) |
+            (data.charCodeAt(i+2) << 16) |
+            (data.charCodeAt(i+3) << 24));
+        cards[id] = (cards[id] || 0) + 1;
+    }
+    setTargetHash({main: Object.entries(cards)});
+});
+
 const updateFromHash = (() =>
 {
     const tag = document.location.hash;
-    setTargetHash((tag.length <= 1) ? false : tag.substring(1));
+    if (tag.length <= 1)
+        setTargetHash(false)
+    else if (tag.startsWith('#ydke://'))
+        importYDKE(tag.substring(8))
+    else
+        setTargetHash(tag.substring(1));
 });
 
 window.addEventListener('hashchange', updateFromHash);
