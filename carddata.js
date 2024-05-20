@@ -85,21 +85,21 @@ window.ResolvePasscode = ((passcode) =>
 
 })();
 
-(()=>{ /* artworks.ygorganization.com */
+(()=>{ /* artworks.ygoresources.com */
 
 let artworkManifest = null;
 window.ArtworksReady = (async ()=>
 {
     try
     {
-        artworkManifest = await (await fetch('https://artworks.ygorganization.com/manifest.json')).json();
+        artworkManifest = await (await fetch('https://artworks.ygoresources.com/manifest.json')).json();
     } catch (e) {
         console.error('Artwork initialization failed');
         console.error(e);
     }
 })();
 
-const NO_DATA_CARD = 'https://db.ygorganization.com/img/no_data_card.png';
+const NO_DATA_CARD = 'https://db.ygoresources.com/img/no_data_card.png';
 window.GetArtworkURL = ((cardId, artId) =>
 {
     if (!artworkManifest)
@@ -115,7 +115,7 @@ window.GetArtworkURL = ((cardId, artId) =>
     if (!artworkData)
         return NO_DATA_CARD;
     
-    return (new URL(artworkData.bestArt, 'https://artworks.ygorganization.com/')).href;
+    return (new URL(artworkData.bestArt, 'https://artworks.ygoresources.com/')).href;
 });
 
 })();

@@ -246,7 +246,7 @@ cyGraph.on('dbltap', (e) => setFocus(e.target));
                 document.getElementById('loading-bar-text').innerText = 'Please stand by...';
                 await window.ArtworksReady;
                 document.getElementById('loading-bar-filled').style.width = '100%';
-                document.getElementById('loading-bar-text').innerText = 'Done, courtesy of artworks.ygorganization.com!';
+                document.getElementById('loading-bar-text').innerText = 'Done, courtesy of artworks.ygoresources.com!';
                 await sleep(200);
                 
                 const nTotal = cardIds.length;
