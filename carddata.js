@@ -120,14 +120,14 @@ window.GetArtworkURL = ((cardId, artId) =>
 
 })();
 
-(()=>{ /* db.ygorganization.com */
+(()=>{ /* db.ygoresources.com */
 
-const _autoMetadata = fetch('https://db.ygorganization.com/data/meta/auto').then(r => r.json());
-const _propsMetadata = fetch('https://db.ygorganization.com/data/meta/mprop').then(r => r.json());
+const _autoMetadata = fetch('https://db.ygoresources.com/data/meta/auto').then(r => r.json());
+const _propsMetadata = fetch('https://db.ygoresources.com/data/meta/mprop').then(r => r.json());
 const _locales = ['en','ja','de','fr','it','es','pt','ko'];
 const _GetCardData = (async (cardId) =>
 {
-    const cardDataAll = await (await fetch('https://db.ygorganization.com/data/card/'+cardId)).json();
+    const cardDataAll = await (await fetch('https://db.ygoresources.com/data/card/'+cardId)).json();
     for (const locale of _locales)
     {
         const cardData = cardDataAll.cardData[locale];
